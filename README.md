@@ -70,7 +70,7 @@ Vue, Vuex, ElementUI
 1. Build the image:
   
     ```$
-    docker build -f Dockerfile-prod -t swoy-vue-web-client:prod .
+    docker build -f Dockerfile.prod -t swoy-vue-web-client:prod .
     ```
 
 1. Set the Environment variables
