@@ -14,6 +14,7 @@ export default function createWebSocketPlugin(socket) {
     clearTimeout(tm);
   }
 
+  // eslint-disable-next-line
   return store => {
     socket.onopen = function() {
       setInterval(ping, 30000);
@@ -48,3 +49,9 @@ export default function createWebSocketPlugin(socket) {
 //     prevState = nextState;
 //   });
 // };
+
+// const localStoragePlugin = store => {
+//   store.subscribe((mutation, { todos }) => {
+//     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+//   })
+// }

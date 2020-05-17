@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>Check auth</h2>
+    <p>All Workspaces</p>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "check"
+  name: "Workspaces"
 };
 </script>
 

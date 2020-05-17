@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>New workspace channel name</h2>
+    <p>App Settings</p>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "channelName"
+  name: "settings-app"
 };
 </script>
 

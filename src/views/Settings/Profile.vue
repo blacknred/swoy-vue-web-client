@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>Workspace Administration</h2>
+    <p>Profile Settings</p>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "administration"
+  name: "settings-profile"
 };
 </script>
 

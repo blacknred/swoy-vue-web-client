@@ -6,7 +6,7 @@ module.exports = {
   devServer: {
     port: 8080,
     lazy: false, // TODO: not work properly
-    https: true, // test pwa
+    https: false, // test pwa need selfsigned cert
     compress: true,
     // nginx proxy issue
     // public: 'myapp.test:80',

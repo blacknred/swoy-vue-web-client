@@ -1,9 +1,4 @@
-const state = {
-  appColor: null,
-  isSoundsOn: true,
-  isNightMode: false,
-  isAutoGifs: true
-};
+const state = {};
 
 const getters = {};
 

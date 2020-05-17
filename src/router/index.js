@@ -1,29 +1,24 @@
 import Vue from "vue";
 import Router from "vue-router";
-import administration from "./administration";
-import workspaces from "./workspaces";
-import settings from "./settings";
-import profile from "./profile";
-import start from "./start";
+import workspaces from "./routes/workspace";
+import settings from "./routes/settings";
+import profile from "./routes/profile";
+import start from "./routes/start";
 import store from "@/store";
 
 Vue.use(Router);
 
 const router = new Router({
-  mode: "history",
   base: process.env.BASE_URL,
+  mode: "history",
   routes: [
     start,
     profile,
     settings,
-    administration,
     workspaces,
     {
       path: "*",
-      redirect: to => {
-        // if (store.)
-        return to; //"/";
-      }
+      redirect: "/"
     }
   ],
   scrollBehavior: (to, _, savedPosition) => {
@@ -48,9 +43,9 @@ const router = new Router({
 });
 
 router.beforeEach((to, _, next) => {
-  if (!to.meta.guest && !store.isAuthenticated) {
-    next({ name: "Check" });
-  } else if (store.redirectPreventionMessage) {
+  if (!to.meta.guest && !store.getters.isLoggedIn) {
+    next({ name: "AuthCheck" });
+  } else if (store.getters.isRedirectPrevented) {
     next(false);
   } else {
     next();
@@ -58,24 +53,9 @@ router.beforeEach((to, _, next) => {
 });
 
 router.afterEach(() => {
-  if (store.redirectPreventionMessage) {
+  if (store.isRedirectPrevented) {
     store.dispatch("common/clearRedirectPrevention");
   }
 });
 
 export default router;
-
-// const isAuthenticated = () => {
-//   const token = localStorage.getItem("token");
-//   const refreshToken = localStorage.getItem("refreshToken");
-//   try {
-//     decode(token);
-//     const { exp } = decode(refreshToken);
-//     if (Date.now() / 1000 > exp) {
-//       return false;
-//     }
-//   } catch (err) {
-//     return false;
-//   }
-//   return true;
-// };

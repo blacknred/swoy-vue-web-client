@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>Start</h2>
+    <h2>New workspace channel name</h2>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "start"
+  name: "new-workspace-channelname"
 };
 </script>
 

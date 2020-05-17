@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2>Start</h2>
+    <p>New workspace type</p>
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "start"
+  name: "new-workspace-type"
 };
 </script>
 

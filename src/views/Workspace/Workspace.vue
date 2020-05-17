@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h2>Start</h2>
+    <p>Workspace</p>
     <router-view />
   </div>
 </template>
 
 <script>
+// if !valid workspaceId redirect to /
 export default {
-  name: "start"
+  name: "workspace"
 };
 </script>
 

@@ -6,20 +6,21 @@ Vue, Vuex, ElementUI
 
 ## Routing
 
-| Path                 | Access | Result                             |
-|----------------------|--------|------------------------------------|
-| /start/#check        | free   | login: enter email                 |
-| /start/#confirm      | free   | login: confirm code from email     |
-| /start/              | auth   | create ws|observe ws               |
-| /start/#find(free)   | auth   | observe ws and join to free        |
-| /start/#teamname     | auth   | enter team name                    |
-| /start/#mode         | auth   | select mode(free|private)          |
-| /start/#channelname  | auth   | enter channel name(skip)           |
-| /start/#invites      | auth   | invite teammates(emails|link,skip) |
-| /start/#profile      | auth   | profile settings                   |
-| /:teamId/admin       | auth   | team admin page next tab           |
-| /:teamId/:channelId? | auth   |                                    |
-| /                    | auth   | redirection                        |
+| Path                  | Access | Result                               |
+|-----------------------|--------|--------------------------------------|
+| /start/#check         | guest  | login: enter email                   |
+| /start/#confirm       | guest  | login: confirm code from email       |
+| /start/               | user   | create|observe wspace(s)             |
+| /start/#find(free)    | user   | observe wspaces and join to free     |
+| /start/#name          | user   | enter new wspace name                |
+| /start/#type          | user   | select new wspace type(free|private) |
+| /start/#channelname   | user   | enter wspace channel name(skip)      |
+| /start/#invites       | user   | invite wspace teammates(emails|link) |
+| /profile              | user   | profile settings                     |
+| /settings             | user   | app settings                         |
+| /:wspaceId/admin      | user   | wspace administration page           |
+| /:wspaceId/:threadId? | user   |                                      |
+| /                     | user   | redirection to                       |
 
 ## Run the project
 
