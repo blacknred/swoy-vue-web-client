@@ -49,7 +49,7 @@ Vue, Vuex, ElementUI
     docker run -it -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 8081:8080 swoy-vue-web-client
     ```
 
-1. Go to `http://localhost:3000`
+1. Go to `https://localhost:8080`
 
 ### Run tests
 

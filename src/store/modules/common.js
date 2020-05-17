@@ -1,77 +1,56 @@
-const ENDPOINT = "https://jsonplaceholder.typicode.com/todos";
+import API from "@/api";
+
+const CONFIRM_CODE_LIVE_PERIOD = 3600 * 5;
 
 const state = {
-  todos: [],
-};
-
-const getters = {
-  allTodos: (state) => state.todos,
+  auth: {
+    token: null,
+    refreshToken: null,
+    confirmationCode: null
+  },
+  isOffline: false,
+  noTransitionMessage: null
 };
 
 const actions = {
-  fetchTodos: async ({ commit }, limit = 5) => {
+  sendConfirmationCode: async ({ commit }, email) => {
     try {
-      const data = await fetch(`${ENDPOINT}?_limit=${limit}`);
+      const data = await API.workspaces.sendAuthConfirmationCode(email);
 
-      commit("setTodos", await data.json());
+      const { code } = await data.json();
+
+      commit("setConfirmationCode", code);
+
+      setTimeout(
+        () => commit("setConfirmationCode", null),
+        CONFIRM_CODE_LIVE_PERIOD
+      );
     } catch (e) {
       console.error(e);
-      commit("setTodos", []);
+      commit("setConfirmationCode", null);
     }
   },
-  deleteTodo: async ({ commit }, id) => {
+  getTokens: async ({ commit }, limit = 5) => {
     try {
-      commit("deleteTodo", id);
+      const tokens = API.workspaces.getTokens("email", limit);
 
-      await fetch(`${ENDPOINT}/${id}`, { method: "DELETE" });
-    } catch (e) {
-      console.error(e);
-    }
-  },
-  addTodo: async ({ commit }, title) => {
-    const todo = { title, completed: false };
-
-    try {
-      const data = await fetch(ENDPOINT, {
-        body: JSON.stringify(todo),
-        method: "POST",
-      });
-
-      const { id } = await data.json();
-
-      commit("addTodo", { id, ...todo });
+      commit("setTokens", await tokens.json());
     } catch (e) {
       console.error(e);
     }
-  },
-  updateTodo: async ({ commit }, updTodo) => {
-    try {
-      commit("updateTodo", updTodo);
-
-      await fetch(`${ENDPOINT}/${updTodo.id}`, {
-        body: JSON.stringify(updTodo),
-        method: "PUT",
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  },
+  }
 };
 
 const mutations = {
-  setTodos: (state, todos) => (state.todos = todos),
-  deleteTodo: (state, id) =>
-    (state.todos = state.todos.filter((t) => t.id !== id)),
-  addTodo: (state, todo) => state.todos.unshift(todo),
-  updateTodo: (state, todo) => {
-    const idx = state.todos.findIndex((x) => x.id === todo.id);
-    if (idx !== -1) state.todos[idx] = todo;
-  },
+  setConfirmationCode: (state, code) => (state.auth.confirmationCode = code),
+  setTokens: (state /*tokens*/) => (state.auth = { ...state.auth }),
+  setOffline: (state, isOffline) => (state.isOffline = isOffline),
+  addNoTransitionMessage: (state, mg) => (state.noTransitionMessage = mg),
+  clearNoTransitionMessage: state => (state.noTransitionMessage = null)
 };
 
 export default {
   state,
-  getters,
   actions,
-  mutations,
+  mutations
 };

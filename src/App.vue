@@ -1,22 +1,19 @@
-<script>
-import Header from "./layout/Header";
-
-export default {
-  name: "App",
-  components: { Header }
-};
-</script>
-
 <template>
   <div id="app">
-    <Header />
+    <!-- <Header /> -->
     <div class="container">
       <router-view />
     </div>
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  name: "App"
+};
+</script>
+
+<style lang="scss">
 body {
   margin: 0;
 }

@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1757593304066,
+    "name": "Crime and Punishment",
+    "description": "Fyodor Dostoyevsky",
+    "isPublic": "false",
+    "logo": "https://api.adorable.io/avatars/120/crime@punishment.png"
+  },
+  {
+    "id": 2657654504066,
+    "name": "The Unloved",
+    "description": "John Saul",
+    "isPublic": "true",
+    "logo": "https://api.adorable.io/avatars/120/the@unloved.png"
+  },
+  {
+    "id": 3507593304066,
+    "name": "It",
+    "description": "Steven King",
+    "isPublic": "true",
+    "logo": "https://api.adorable.io/avatars/120/steven@king.png"
+  },
+  {
+    "id": 4457593343567,
+    "name": "The Sentinel",
+    "description": "Jeremy Bishop",
+    "isPublic": "false",
+    "logo": "https://api.adorable.io/avatars/120/the@sentinel.png"
+  },
+  {
+    "id": 5351122304066,
+    "name": "Jane Eyre",
+    "description": "Charlotte Bron",
+    "isPublic": "false",
+    "logo": "https://api.adorable.io/avatars/120/jane@eyre.png"
+  },
+  {
+    "id": 6257987654066,
+    "name": "The Girl with the Dragon Tattoo",
+    "description": "Stieg Larsson",
+    "isPublic": "false",
+    "logo": "https://api.adorable.io/avatars/120/stieg@larsson.png"
+  },
+  {
+    "id": 7177593366066,
+    "name": "Robinson Crusoe",
+    "description": "Daniel Defoe",
+    "isPublic": "false",
+    "logo": "https://api.adorable.io/avatars/120/robinson@crusoe.png"
+  }
+]

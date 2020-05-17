@@ -1,5 +1,5 @@
 export default {
-  path: '/profile',
-  name: 'Profile',
-  component: () => import('@views/Profile.vue')
+  path: "/profile",
+  name: "Profile",
+  component: () => import("@/views/Profile.vue")
 };
