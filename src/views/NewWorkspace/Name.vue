@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>New workspace name</p>
-    <router-view />
+    <router-link to="/create#type">Go Further</router-link>
   </div>
 </template>
 

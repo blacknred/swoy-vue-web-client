@@ -1,7 +1,6 @@
 <template>
   <div>
     <p>Profile Settings</p>
-    <router-view />
   </div>
 </template>
 

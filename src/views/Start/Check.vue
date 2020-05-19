@@ -1,13 +1,12 @@
 <template>
   <div>
-    <h2>Start</h2>
-    <router-view />
+    <p>Auth check</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "start"
+  name: "auth-check"
 };
 </script>
 

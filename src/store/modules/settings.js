@@ -1,15 +1,32 @@
+import Languages from "@/locales";
+import i18n from "@/plugins/i18n";
+
+const supportedLanguages = Object.getOwnPropertyNames(Languages);
+
 const state = {
   appColor: null,
   isSoundsOn: true,
   isNightMode: false,
-  isAutoGifs: true
+  isAutoGifs: true,
+  language: i18n.locale
 };
 
 const getters = {};
 
-const actions = {};
+const actions = {
+  setLanguage({ commit }, language) {
+    // check language is available
+    if (!supportedLanguages.includes(language)) return;
 
-const mutations = {};
+    commit("setLanguage", language);
+
+    i18n.locale = language;
+  }
+};
+
+const mutations = {
+  setLanguage: (state, language) => (state.language = language)
+};
 
 export default {
   state,

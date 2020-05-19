@@ -1,7 +1,6 @@
 <template>
   <div>
     <p>All Workspaces</p>
-    <router-view />
   </div>
 </template>
 

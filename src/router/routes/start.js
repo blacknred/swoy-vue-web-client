@@ -1,24 +1,28 @@
 import store from "@/store";
 
 export default {
-  path: "/start/:step",
+  path: "/start",
   name: "Start",
-  component: () => import("@/views/Start.vue"),
+  component: () => import("@/views/Start/Index.vue"),
   children: [
     {
-      path: "#check",
+      path: "check",
       name: "AuthCheck",
-      component: () => import("@/views/Auth/Check.vue"),
+      component: () => import("@/views/Start/Check.vue"),
+      beforeEnter: (_, __, next) => {
+        if (!store.getters.isLoggedIn) next("/start");
+        else next();
+      },
       meta: {
         guest: true
       }
     },
     {
-      path: "#confirm",
+      path: "confirm",
       name: "AuthConfirm",
-      component: () => import("@/views/Auth/Confirm.vue"),
+      component: () => import("@/views/Start/Confirm.vue"),
       beforeEnter: (_, __, next) => {
-        if (store.confirmationCode) next();
+        if (store.state.start.confirmationCode) next();
         else next({ name: "AuthCheck" });
       },
       meta: {
@@ -26,46 +30,13 @@ export default {
       }
     },
     {
-      path: "#find",
+      path: "explore",
       name: "Workspaces",
-      component: () => import("@/views/Workspaces.vue")
-    },
-    {
-      path: "#name",
-      name: "NewWorkspaceName",
-      component: () => import("@/views/NewWorkspace/Name.vue")
-    },
-    {
-      path: "#type",
-      name: "NewWorkspaceType",
-      component: () => import("@/views/NewWorkspace/Type.vue"),
-      beforeEnter: (_, __, next) => {
-        if (store.newWorkspace.name.length) next();
-        else next({ name: "NewWorkspaceName" });
-      }
-    },
-    {
-      path: "#channelname",
-      name: "NewWorkspaceChannelname",
-      component: () => import("@/views/NewWorkspace/ChannelName.vue"),
-      beforeEnter: (_, __, next) => {
-        if (store.newWorkspace.name.length) next();
-        else next({ name: "NewWorkspaceName" });
-      }
-    },
-    {
-      path: "#invites",
-      name: "NewWorkspaceInvites",
-      component: () => import("@/views/NewWorkspace/Invites.vue"),
-      beforeEnter: (_, __, next) => {
-        if (store.newWorkspace.channelName.length) next();
-        else next({ name: "NewWorkspaceChannelname" });
-      }
+      component: () => import("@/views/Start/Workspaces.vue")
     },
     {
       path: "*",
-      name: "Start",
-      component: () => import("@/views/Start.vue")
+      redirect: "/start"
     }
   ]
 };

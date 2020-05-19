@@ -1,13 +1,14 @@
 <template>
   <div>
-    <p>Auth confirm</p>
+    <p>Start</p>
+    
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "auth-confirm"
+  name: "start"
 };
 </script>
 

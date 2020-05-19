@@ -4,6 +4,7 @@ import localForage from "localforage";
 import VuexPersist from "vuex-persist";
 // import createWebSocketPlugin from "@/plugins/createWebSocketPlugin";
 import workspaces from "./modules/workspaces";
+import newWorkspace from "./modules/newWorkspace";
 import settings from "./modules/settings";
 import common from "./modules/common";
 import start from "./modules/start";
@@ -24,6 +25,7 @@ export default new Vuex.Store({
   plugins: [vuexStorage.plugin].concat(debug ? [] : []),
   strict: debug,
   modules: {
+    newWorkspace,
     workspaces,
     settings,
     common,

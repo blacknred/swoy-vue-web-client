@@ -6,21 +6,20 @@ Vue, Vuex, ElementUI
 
 ## Routing
 
-| Path                  | Access | Result                               |
-|-----------------------|--------|--------------------------------------|
-| /start/#check         | guest  | login: enter email                   |
-| /start/#confirm       | guest  | login: confirm code from email       |
-| /start/               | user   | create|observe wspace(s)             |
-| /start/#find(free)    | user   | observe wspaces and join to free     |
-| /start/#name          | user   | enter new wspace name                |
-| /start/#type          | user   | select new wspace type(free|private) |
-| /start/#channelname   | user   | enter wspace channel name(skip)      |
-| /start/#invites       | user   | invite wspace teammates(emails|link) |
-| /profile              | user   | profile settings                     |
-| /settings             | user   | app settings                         |
-| /:wspaceId/admin      | user   | wspace administration page           |
-| /:wspaceId/:threadId? | user   |                                      |
-| /                     | user   | redirection to                       |
+| Path                 | Access | Result                             |
+|----------------------|--------|------------------------------------|
+| /start               | user   | landing page                       |
+| /start#check         | guest  | login page                         |
+| /start#confirm       | guest  | auth code confirmation page        |
+| /start#find(free)    | user   | space observation and joining page |
+| /create#name         | user   | new space name page                |
+| /create#type         | user   | new space type(free|private) page  |
+| /create#channelname  | user   | new space channel name page        |
+| /create#invites      | user   | new space teammate invitation page |
+| /settings#profile    | user   | profile settings page              |
+| /settings#app        | user   | app settings page                  |
+| /:spaceId/admin      | user   | space administration page          |
+| /:spaceId/:threadId? | user   | space page                         |
 
 ## Run the project
 

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2>Workspace administration</h2>
-    <router-view />
+    <p>{{ $t("pageTitle", { name: "Workspace administration" }) }}</p>
   </div>
 </template>
 

@@ -4,25 +4,17 @@ import * as API from "@/api";
 
 const CONFIRM_CODE_LIVE_PERIOD = 3600 * 5;
 
-const newWorkspaceFields = {
-  name: "",
-  isPublic: false,
-  channelName: "",
-  invites: []
-};
-
 const state = {
   tokens: {
     token: null,
     refreshToken: null
   },
   confirmationCode: null,
-  workspaces: [],
-  newWorkspace: { ...newWorkspaceFields }
+  workspaces: []
 };
 
 const getters = {
-  isLoggedIn: store => {
+  isLoggedIn: (store) => {
     try {
       decode(store.token);
       const { exp } = decode(store.refreshToken);
@@ -46,12 +38,12 @@ const actions = {
 
       commit("setConfirmationCode", code);
 
-      router.push("/start/#confirm");
+      router.push("/start#confirm");
 
       setTimeout(() => {
         commit("setConfirmationCode", null);
 
-        router.push("/start/#check");
+        router.push("/start#check");
       }, CONFIRM_CODE_LIVE_PERIOD);
     } catch (e) {
       console.error(e);
@@ -89,38 +81,13 @@ const actions = {
       console.error(e);
       commit("setWorkspaces", []);
     }
-  },
-  // work with new workspace
-  setNewWorkspace: ({ commit }, data) => {
-    if (data.name) {
-      // check name unique
-      console.log(data.name);
-    }
-
-    commit("setNewWorkspace", data);
-  },
-  clearNewWorkspace: ({ commit }) => {
-    commit("setNewWorkspace", { ...newWorkspaceFields });
-  },
-  createWorkspace: async ({ commit, state }) => {
-    try {
-      const { id } = await API.workspaces.createWorkspace(state.newWorkspace);
-
-      commit("setWorkspaces", { ...newWorkspaceFields });
-
-      router.push(`/${id}`);
-    } catch (e) {
-      console.error(e);
-    }
   }
 };
 
 const mutations = {
-  setConfirmationCode: (state, code) => (state.confirmationCode = code),
   setTokens: (state, tokens) => (state.tokens = tokens),
-  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces),
-  setNewWorkspace: (state, data) =>
-    (state.newWorkspace = { ...state.newWorkspace, ...data })
+  setConfirmationCode: (state, code) => (state.confirmationCode = code),
+  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces)
 };
 
 export default {

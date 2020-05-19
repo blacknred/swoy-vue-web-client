@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import workspaces from "./routes/workspace";
+import workspace from "./routes/workspace";
+import create from "./routes/newWorkspace";
 import settings from "./routes/settings";
-import profile from "./routes/profile";
 import start from "./routes/start";
 import store from "@/store";
 
@@ -13,21 +13,23 @@ const router = new Router({
   mode: "history",
   routes: [
     start,
-    profile,
+    create,
     settings,
-    workspaces,
+    workspace,
     {
       path: "*",
-      redirect: "/"
+      redirect: "/workspace"
     }
   ],
   scrollBehavior: (to, _, savedPosition) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
+      // available only by the browser's back/forward buttons
       if (savedPosition) {
         resolve(savedPosition);
         return;
       }
 
+      // scroll to #anchor
       setTimeout(() => {
         if (to.hash) {
           resolve({
@@ -44,7 +46,7 @@ const router = new Router({
 
 router.beforeEach((to, _, next) => {
   if (!to.meta.guest && !store.getters.isLoggedIn) {
-    next({ name: "AuthCheck" });
+    next("/start#check");
   } else if (store.getters.isRedirectPrevented) {
     next(false);
   } else {

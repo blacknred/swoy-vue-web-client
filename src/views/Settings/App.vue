@@ -1,7 +1,6 @@
 <template>
   <div>
     <p>App Settings</p>
-    <router-view />
   </div>
 </template>
 
