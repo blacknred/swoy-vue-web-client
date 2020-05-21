@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>Start</p>
-    
+
     <router-view />
   </div>
 </template>

@@ -8,19 +8,15 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  created() {
+    this.$notify({
+      title: "It works!",
+      type: "success",
+      message:
+        "We've laid the ground work for you. It's time for you to build something epic!",
+      duration: 5000
+    });
+  }
 };
 </script>
-
-<style lang="scss">
-body {
-  margin: 0;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: cornsilk;
-  padding: 1rem;
-}
-</style>

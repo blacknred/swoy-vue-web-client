@@ -22,7 +22,7 @@ const router = new Router({
     }
   ],
   scrollBehavior: (to, _, savedPosition) => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       // available only by the browser's back/forward buttons
       if (savedPosition) {
         resolve(savedPosition);
@@ -45,8 +45,10 @@ const router = new Router({
 });
 
 router.beforeEach((to, _, next) => {
+  console.log(to.path);
   if (!to.meta.guest && !store.getters.isLoggedIn) {
-    next("/start#check");
+    console.log("not logged");
+    next("/start/check");
   } else if (store.getters.isRedirectPrevented) {
     next(false);
   } else {

@@ -14,7 +14,7 @@ const state = {
 };
 
 const getters = {
-  isLoggedIn: (store) => {
+  isLoggedIn: store => {
     try {
       decode(store.token);
       const { exp } = decode(store.refreshToken);
@@ -38,12 +38,12 @@ const actions = {
 
       commit("setConfirmationCode", code);
 
-      router.push("/start#confirm");
+      router.push("/start/confirm");
 
       setTimeout(() => {
         commit("setConfirmationCode", null);
 
-        router.push("/start#check");
+        router.push("/start/check");
       }, CONFIRM_CODE_LIVE_PERIOD);
     } catch (e) {
       console.error(e);

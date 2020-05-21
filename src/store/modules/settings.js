@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import Languages from "@/locales";
 import i18n from "@/plugins/i18n";
 
@@ -21,6 +22,7 @@ const actions = {
     commit("setLanguage", language);
 
     i18n.locale = language;
+    dayjs.locale(language);
   }
 };
 

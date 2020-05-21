@@ -1,0 +1,25 @@
+// variables
+
+$font-size-default: 14px;
+$color-default: #5d6376;
+
+// app
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-size: $font-size-default;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  color: $color-default;
+}
+
+@import "./fonts.scss";
+$--font-path: "~element-ui/lib/theme-chalk/fonts";
+@import "~element-ui/packages/theme-chalk/src/index";

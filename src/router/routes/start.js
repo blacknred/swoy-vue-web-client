@@ -10,7 +10,7 @@ export default {
       name: "AuthCheck",
       component: () => import("@/views/Start/Check.vue"),
       beforeEnter: (_, __, next) => {
-        if (!store.getters.isLoggedIn) next("/start");
+        if (store.getters.isLoggedIn) next("/start");
         else next();
       },
       meta: {
