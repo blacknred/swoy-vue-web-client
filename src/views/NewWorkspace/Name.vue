@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "new-workspace-name"
+  name: "NewWorkspaceName"
 };
 </script>
 

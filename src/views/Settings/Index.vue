@@ -1,7 +1,8 @@
 <template>
   <div>
-    <profile v-if="$route.hash === '#profile'" />
-    <app v-if="$route.hash === '#app'" />
+    <keep-alive>
+      <component :is="component" />
+    </keep-alive>
   </div>
 </template>
 
@@ -10,10 +11,15 @@ import Profile from "./Profile.vue";
 import App from "./App.vue";
 
 export default {
-  name: "settings",
+  name: "Settings",
   components: {
     Profile,
     App
+  },
+  computed: {
+    component() {
+      return this.$route?.hash.slice(1) || "app";
+    }
   }
 };
 </script>

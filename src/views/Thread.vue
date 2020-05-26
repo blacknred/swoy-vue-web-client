@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Workspace threads</p>
+    <p>Thread</p>
     <content-placeholders>
       <content-placeholders-heading :img="true" />
       <content-placeholders-text :lines="3" />
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "workspace-threads"
+  name: "WorkspaceThread"
 };
 </script>
 

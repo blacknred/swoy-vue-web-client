@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>All Workspaces</p>
-  </div>
+  <div>Explore Workspaces</div>
 </template>
 
 <script>
 export default {
-  name: "Workspaces"
+  name: "Explore"
 };
 </script>
 

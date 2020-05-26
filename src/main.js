@@ -1,20 +1,18 @@
 import Vue from "vue";
 import ElementUI from "element-ui";
 import VueContentPlaceholders from "vue-content-placeholders";
-import i18n from "./plugins/i18n";
-import "./registerServiceWorker";
-import router from "./router";
 import App from "./App.vue";
 import store from "./store";
+import router from "./router";
+import i18n from "./plugins/i18n";
+import "./registerServiceWorker";
 import "@/assets/styles/index.scss";
 
 Vue.config.productionTip = false;
 
 Vue.use(VueContentPlaceholders);
 
-Vue.use(ElementUI, {
-  i18n: (k, v) => i18n.t(k, v)
-});
+Vue.use(ElementUI, { i18n: (k, v) => i18n.t(k, v) });
 
 new Vue({
   store,

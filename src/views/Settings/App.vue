@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>App Settings</p>
-  </div>
+  <div>App Settings</div>
 </template>
 
 <script>
 export default {
-  name: "settings-app"
+  name: "AppSettings"
 };
 </script>
 

@@ -1,9 +1,8 @@
 <template>
   <div>
-    <name v-if="$route.hash === '#name'" />
-    <type v-if="$route.hash === '#type'" />
-    <channel v-if="$route.hash === '#channel'" />
-    <invites v-if="$route.hash === '#invites'" />
+    <keep-alive>
+      <component :is="component" />
+    </keep-alive>
   </div>
 </template>
 
@@ -14,12 +13,17 @@ import Name from "./Name.vue";
 import Type from "./Type.vue";
 
 export default {
-  name: "new-workspace",
+  name: "NewWorkspace",
   components: {
     Channel,
     Invites,
     Name,
     Type
+  },
+  computed: {
+    component() {
+      return this.$route?.hash.slice(1) || "name";
+    }
   }
 };
 </script>

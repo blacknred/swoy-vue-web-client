@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>Auth check</p>
-  </div>
+  <div>Auth Check</div>
 </template>
 
 <script>
 export default {
-  name: "auth-check"
+  name: "AuthCheck"
 };
 </script>
 

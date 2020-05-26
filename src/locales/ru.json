@@ -1,3 +1,4 @@
 {
-  "pageTitle": "Страница {name}!"
+  "pageTitle": "Страница {name}!",
+  "changeRegion": "Изменить Регион"
 }

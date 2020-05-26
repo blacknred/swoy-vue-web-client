@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>Profile Settings</p>
-  </div>
+  <div>Profile Settings</div>
 </template>
 
 <script>
 export default {
-  name: "settings-profile"
+  name: "ProfileSettings"
 };
 </script>
 

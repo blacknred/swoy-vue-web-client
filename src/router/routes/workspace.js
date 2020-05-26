@@ -1,17 +1,6 @@
 export default {
-  path: "/:workspaceId/:threadId?",
+  path: "/:workspaceId",
   name: "Workspace",
-  component: () => import("@/views/Workspace/Index.vue"),
-  children: [
-    {
-      path: "admin",
-      name: "Administration",
-      component: () => import("@/views/Workspace/Administration.vue")
-    },
-    {
-      path: "*",
-      name: "Threads",
-      component: () => import("@/views/Workspace/Threads.vue")
-    }
-  ]
+  meta: { layout: "workspace" },
+  component: () => import("@/views/Thread.vue")
 };

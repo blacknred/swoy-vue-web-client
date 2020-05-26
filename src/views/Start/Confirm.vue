@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <p>Auth confirm</p>
-  </div>
+  <div>Auth confirm</div>
 </template>
 
 <script>
 export default {
-  name: "auth-confirm"
+  name: "AuthConfirm"
 };
 </script>
 

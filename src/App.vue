@@ -1,14 +1,30 @@
 <template>
   <div id="app">
     <transition name="fade" mode="out-in">
-      <router-view />
+      <component :is="layout">
+        <router-view />
+      </component>
     </transition>
   </div>
 </template>
 
 <script>
+import Default from "@/layouts/Default.vue";
+import Workspace from "@/layouts/Workspace.vue";
+import Administration from "@/layouts/Administration.vue";
+
 export default {
   name: "App",
+  components: {
+    Default,
+    Workspace,
+    Administration
+  },
+  computed: {
+    layout() {
+      return this.$route.meta.layout || "default";
+    }
+  },
   created() {
     this.$notify({
       title: "It works!",

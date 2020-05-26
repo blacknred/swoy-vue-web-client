@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import administration from "./routes/administration";
 import workspace from "./routes/workspace";
 import create from "./routes/newWorkspace";
 import settings from "./routes/settings";
@@ -15,6 +16,7 @@ const router = new Router({
     start,
     create,
     settings,
+    administration,
     workspace,
     {
       path: "*",
@@ -22,7 +24,7 @@ const router = new Router({
     }
   ],
   scrollBehavior: (to, _, savedPosition) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // available only by the browser's back/forward buttons
       if (savedPosition) {
         resolve(savedPosition);
@@ -47,8 +49,7 @@ const router = new Router({
 router.beforeEach((to, _, next) => {
   console.log(to.path);
   if (!to.meta.guest && !store.getters.isLoggedIn) {
-    console.log("not logged");
-    next("/start/check");
+    next("/start#check");
   } else if (store.getters.isRedirectPrevented) {
     next(false);
   } else {

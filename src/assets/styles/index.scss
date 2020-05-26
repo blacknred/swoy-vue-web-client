@@ -1,7 +1,9 @@
-// variables
+@import "./fonts.scss";
+@import "./element_theme.css";
+// $--font-path: "~element-ui/lib/theme-chalk/fonts";
+// @import "~element-ui/packages/theme-chalk/src/index";
 
 $font-size-default: 14px;
-$color-default: #5d6376;
 
 // app
 
@@ -17,9 +19,12 @@ body {
   line-height: 20px;
   letter-spacing: 0.25px;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  color: $color-default;
 }
 
-@import "./fonts.scss";
-$--font-path: "~element-ui/lib/theme-chalk/fonts";
-@import "~element-ui/packages/theme-chalk/src/index";
+.centered {
+  text-align: center;
+}
+
+.el-dropdown-link {
+  cursor: pointer;
+}

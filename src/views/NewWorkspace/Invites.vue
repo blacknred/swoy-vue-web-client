@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "new-workspace-invites"
+  name: "NewWorkspaceInvites"
 };
 </script>
 

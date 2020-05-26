@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "new-workspace-channel"
+  name: "NewWorkspaceChannel"
 };
 </script>
 

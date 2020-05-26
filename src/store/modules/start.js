@@ -14,7 +14,7 @@ const state = {
 };
 
 const getters = {
-  isLoggedIn: store => {
+  isLoggedIn: (store) => {
     try {
       decode(store.token);
       const { exp } = decode(store.refreshToken);
@@ -22,8 +22,9 @@ const getters = {
         return false;
       }
     } catch (err) {
-      return false;
+      return true;
     }
+
     return true;
   }
 };
