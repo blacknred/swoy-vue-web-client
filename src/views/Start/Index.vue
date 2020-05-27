@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { computed } from "@vue/composition-api";
 import Default from "./Default.vue";
 import Explore from "./Explore.vue";
 import Confirm from "./Confirm.vue";
@@ -20,10 +21,12 @@ export default {
     Confirm,
     Check
   },
-  computed: {
-    component() {
-      return this.$route?.hash.slice(1) || "default";
-    }
+  setup(_, ctx) {
+    const component = computed(
+      () => ctx.root.$route.hash?.slice(1) || "default"
+    );
+
+    return { component };
   }
 };
 </script>

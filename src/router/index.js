@@ -20,7 +20,9 @@ const router = new Router({
     workspace,
     {
       path: "*",
-      redirect: "/workspace"
+      name: "Landing",
+      meta: { guest: true, noHeader: true },
+      component: () => import("@/views/Landing.vue")
     }
   ],
   scrollBehavior: (to, _, savedPosition) => {

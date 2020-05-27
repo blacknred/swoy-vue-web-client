@@ -1,28 +1,33 @@
+import dayjs from "dayjs";
 import decode from "jwt-decode";
 import router from "@/router";
 import * as API from "@/api";
 
-const CONFIRM_CODE_LIVE_PERIOD = 3600 * 5;
+const CONFIRM_CODE_LIVE_MIN = 5;
 
 const state = {
   tokens: {
     token: null,
     refreshToken: null
   },
-  confirmationCode: null,
+  confirmation: {
+    email: null,
+    code: null,
+    expireAt: null
+  },
   workspaces: []
 };
 
 const getters = {
   isLoggedIn: (store) => {
     try {
-      decode(store.token);
-      const { exp } = decode(store.refreshToken);
+      decode(store.tokens.token);
+      const { exp } = decode(store.tokens.refreshToken);
       if (Date.now() / 1000 > exp) {
         return false;
       }
     } catch (err) {
-      return true;
+      return false;
     }
 
     return true;
@@ -39,13 +44,13 @@ const actions = {
 
       commit("setConfirmationCode", code);
 
-      router.push("/start/confirm");
+      router.push("/start#confirm");
 
-      setTimeout(() => {
-        commit("setConfirmationCode", null);
+      // setTimeout(() => {
+      //   commit("setConfirmationCode", null);
 
-        router.push("/start/check");
-      }, CONFIRM_CODE_LIVE_PERIOD);
+      //   router.push("/start#check");
+      // }, CONFIRM_CODE_LIVE_PERIOD);
     } catch (e) {
       console.error(e);
       commit("setConfirmationCode", null);
@@ -58,7 +63,7 @@ const actions = {
 
       commit("setTokens", await tokens.json());
 
-      router.push("/");
+      router.push("/start");
     } catch (e) {
       console.error(e);
     }
@@ -87,8 +92,18 @@ const actions = {
 
 const mutations = {
   setTokens: (state, tokens) => (state.tokens = tokens),
-  setConfirmationCode: (state, code) => (state.confirmationCode = code),
-  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces)
+  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces),
+  setConfirmationCode: (state, code) => {
+    state.confirmationCode = code;
+
+    if (code) {
+      state.confirmationExpireAt = dayjs()
+        .add(CONFIRM_CODE_LIVE_MIN, "min")
+        .valueOf();
+    } else {
+      state.confirmationExpireAt = null;
+    }
+  }
 };
 
 export default {

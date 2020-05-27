@@ -6,7 +6,7 @@ export default {
   meta: { guest: true },
   component: () => import("@/views/Start/Index.vue"),
   beforeEnter: (to, __, next) => {
-    if (to.hash === "#check") {
+    if (to.hash === "#check" || to.hash === "#recovery") {
       if (store.getters.isLoggedIn) next("/start");
       else next();
     } else if (to.hash === "#confirm") {
