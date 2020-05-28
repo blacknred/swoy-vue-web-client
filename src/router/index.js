@@ -1,10 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import administration from "./routes/administration";
-import workspace from "./routes/workspace";
-import create from "./routes/newWorkspace";
-import settings from "./routes/settings";
-import start from "./routes/start";
+import routes from './routes';
 import store from "@/store";
 
 Vue.use(Router);
@@ -12,19 +8,7 @@ Vue.use(Router);
 const router = new Router({
   base: process.env.BASE_URL,
   mode: "history",
-  routes: [
-    start,
-    create,
-    settings,
-    administration,
-    workspace,
-    {
-      path: "*",
-      name: "Landing",
-      meta: { guest: true, noHeader: true },
-      component: () => import("@/views/Landing.vue")
-    }
-  ],
+  routes,
   scrollBehavior: (to, _, savedPosition) => {
     return new Promise((resolve) => {
       // available only by the browser's back/forward buttons

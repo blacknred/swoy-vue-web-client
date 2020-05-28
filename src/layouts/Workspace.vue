@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
+section {
   height: 100vh;
 }
 </style>

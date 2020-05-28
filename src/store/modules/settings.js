@@ -16,7 +16,6 @@ const getters = {};
 
 const actions = {
   setLanguage({ commit }, language) {
-    // check language is available
     if (!supportedLanguages.includes(language)) return;
 
     commit("setLanguage", language);

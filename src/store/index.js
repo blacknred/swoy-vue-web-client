@@ -2,9 +2,10 @@ import Vue from "vue";
 import Vuex from "vuex";
 import localForage from "localforage";
 import VuexPersist from "vuex-persist";
-// import createWebSocketPlugin from "@/plugins/createWebSocketPlugin";
-import workspaces from "./modules/workspaces";
+// import createWebSocketPlugin from "@/plugins/ws";
+import restorationPlugin from "@/plugins/restoration";
 import newWorkspace from "./modules/newWorkspace";
+import workspaces from "./modules/workspaces";
 import settings from "./modules/settings";
 import common from "./modules/common";
 import start from "./modules/start";
@@ -18,11 +19,12 @@ Vue.use(Vuex);
 
 const vuexStorage = new VuexPersist({
   key: "swoy",
-  storage: localForage
+  storage: localForage,
+  asyncStorage: true
 });
 
 export default new Vuex.Store({
-  plugins: [vuexStorage.plugin].concat(debug ? [] : []),
+  plugins: [vuexStorage.plugin, restorationPlugin].concat(debug ? [] : []),
   strict: debug,
   modules: {
     newWorkspace,

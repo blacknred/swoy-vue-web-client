@@ -2,6 +2,12 @@ const path = require("path");
 const webpack = require("webpack"); // eslint-disable-line
 
 module.exports = {
+  pages: {
+    index: {
+      entry: path.resolve(__dirname, "src", "main.js"),
+      title: "Swoy"
+    }
+  },
   // extended webpack-dev-server options
   devServer: {
     port: 8080,

@@ -19,6 +19,8 @@ body {
   line-height: 20px;
   letter-spacing: 0.25px;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .el-dropdown-link {

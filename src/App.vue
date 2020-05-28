@@ -10,9 +10,9 @@
 
 <script>
 import { computed, onMounted } from "@vue/composition-api";
-import Default from "@/layouts/Default.vue";
-import Workspace from "@/layouts/Workspace.vue";
 import Administration from "@/layouts/Administration.vue";
+import Workspace from "@/layouts/Workspace.vue";
+import Default from "@/layouts/Default.vue";
 
 export default {
   name: "App",

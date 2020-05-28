@@ -1,4 +1,10 @@
 {
   "pageTitle": "Page {name}!",
-  "changeRegion": "Change Region"
+  "landingAppDescription": "Simple, AI-powered team chat app.",
+  "getStarted": "Get Started",
+  "apps": "Apps",
+  "about": "About",
+  "blog": "Blog",
+  "region": "United States(English)",
+  "сhangeRegion": "Change Region"
 }
