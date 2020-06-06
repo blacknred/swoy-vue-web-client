@@ -13,11 +13,11 @@ Vue, Vuex, ElementUI
 | /start#check         | guest  | login page                         |
 | /start#confirm       | guest  | auth code confirmation page        |
 | /start#recovery      | guest  | auth recovery page                 |
-| /start#explore       | user   | space observation and joining page |
-| /create#name         | user   | new space name page                |
-| /create#type         | user   | new space type(free/private) page  |
-| /create#channel      | user   | new space channel name page        |
-| /create#invites      | user   | new space teammate invitation page |
+| /add#explore         | user   | space observation and joining page |
+| /add#teamname        | user   | new space name page                |
+| /add#teamtype        | user   | new space type(free/private) page  |
+| /add#firstchannel    | user   | new space first channel name page  |
+| /add#invites         | user   | new space teammate invitation page |
 | /settings#profile    | user   | profile settings page              |
 | /settings#app        | user   | app settings page                  |
 | /admin/:spaceId      | user   | space administration page          |
@@ -86,13 +86,3 @@ Vue, Vuex, ElementUI
    ```$
    docker run -it -p 80:80 --rm swoy-vue-web-client:prod
    ```
-
-## Vue 3
-
-Composition API instead of Options API
-Multiple roots in templates
-Suspense
-Portals
-Multiple v-model
-Better reactivity
-Better ts support

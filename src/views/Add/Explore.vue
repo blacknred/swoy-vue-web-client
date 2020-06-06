@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "Explore"
+  name: "ExploreWorkspaces"
 };
 </script>
 

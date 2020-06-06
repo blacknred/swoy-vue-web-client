@@ -1,8 +1,4 @@
-const state = {
-  workspaces: [],
-  isWorkspaceListOpen: false,
-  isChannelListOpen: false
-};
+const state = {};
 
 const getters = {};
 

@@ -1,10 +1,10 @@
 <template>
   <el-container>
-    <el-header height="100px" v-if="showHeader">
+    <el-header height="100px">
       <el-row type="flex" justify="center" align="middle">
-        <router-link to="/">
+        <router-link to="/start">
           <el-link type="primary">
-            <h1>{{title}}</h1>
+            <h2>{{ title }}</h2>
           </el-link>
         </router-link>
       </el-row>
@@ -45,10 +45,8 @@ section {
     div {
       height: 100%;
     }
-    h1 {
+    h2 {
       font-family: "Dosis";
-      font-size: 2.2rem;
-      line-height: 1.17;
     }
   }
   .el-col-24 {

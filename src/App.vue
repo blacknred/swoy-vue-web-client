@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from "@vue/composition-api";
+import { computed, watch } from "@vue/composition-api";
 import Administration from "@/layouts/Administration.vue";
 import Workspace from "@/layouts/Workspace.vue";
 import Default from "@/layouts/Default.vue";
@@ -22,16 +22,20 @@ export default {
     Administration
   },
   setup(_, ctx) {
-    const layout = computed(() => ctx.root.$route.meta.layout || "default");
+    const { $route, $store } = ctx.root;
 
-    onMounted(() => {
-      // ctx.root.$notify({
-      //   title: "It works!",
-      //   type: "success",
-      //   message:
-      //     "We've laid the ground work for you. It's time for you to build something epic!",
-      //   duration: 5000
-      // });
+    const layout = computed(() => $route?.meta?.layout || "default");
+    const notification = computed(() => $store.state.notification);
+
+    watch(notification, note => {
+      if (note) {
+        ctx.root.$notify({
+          position: "bottom-left",
+          message: note.message,
+          type: note.type,
+          duration: 6000
+        });
+      }
     });
 
     return { layout };

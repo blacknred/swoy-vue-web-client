@@ -1,43 +1,102 @@
 <template>
-  <div>
-    <el-row type="flex" justify="center" align="middle">
-      <h2>Enter your email</h2>
-    </el-row>
-    <el-row type="flex" justify="center" align="middle">
-      We use simple authentication model, no login, no password,
-      <br />just email which will be used for quick code confirmation.
-    </el-row>
-    <el-row type="flex" justify="center" align="middle">
-      <el-input
-        autofocus
-        clearable
-        autocomplete
-        type="email"
-        v-model="email"
-        placeholder="name@work-email.com"
-      ></el-input>
-    </el-row>
-    <el-row type="flex" justify="center" align="middle">
-      <el-button type="primary" @click="handleSend">Confirm</el-button>
-    </el-row>
-  </div>
+  <el-row>
+    <el-col :span="8" :offset="8">
+      <h1>{{ $t("enterEmail") }}</h1>
+      <h4>{{ $t("authDescription") }}</h4>
+      <br />
+      <br />
+      <el-form
+        ref="form"
+        :model="state.form"
+        :rules="state.rules"
+        @submit.native.prevent="onSubmit"
+      >
+        <el-form-item prop="email">
+          <el-input
+            placeholder="name@work-email.com"
+            v-model="state.form.email"
+            autocomplete
+            autofocus
+            clearable
+          />
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            :disabled="!state.form.email || state.isLoading"
+            :loading="state.isLoading"
+            native-type="submit"
+            @click="onSubmit"
+            type="primary"
+          >{{ $t("confirm") }}</el-button>
+        </el-form-item>
+        <el-form-item>
+          <router-link to="#recovery">
+            <el-button type="danger" plain>{{ $t("recovery") }}</el-button>
+          </router-link>
+        </el-form-item>
+      </el-form>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
-import { ref } from "@vue/composition-api";
+import { reactive } from "@vue/composition-api";
 
 export default {
   name: "AuthCheck",
   setup(_, ctx) {
-    const email = ref("");
+    const { $store, $router } = ctx.root;
+    const state = reactive({
+      isLoading: false,
+      form: { email: null },
+      rules: {
+        email: [
+          {
+            trigger: "submit",
+            required: true,
+            validator: (_, value, callback) => {
+              if (value && !/\S+@\S+\.\S+/.test(value.trim().toLowerCase())) {
+                callback(new Error(ctx.root.$t("invalidEmail")));
+              } else {
+                callback();
+              }
+            }
+          }
+        ]
+      }
+    });
 
-    const handleSend = () => {
-      ctx.root.$store.dispatch("confirmEmail", email.value);
-    };
+    function onSubmit() {
+      ctx.refs["form"].validate(async valid => {
+        if (!valid) return false;
 
-    return { email, handleSend };
+        state.isLoading = true;
+
+        await $store.dispatch(
+          "confirmEmail",
+          state.form.email.trim().toLowerCase()
+        );
+
+        state.isLoading = false;
+        $router.push({ hash: "#confirm" });
+      });
+    }
+
+    return { state, onSubmit };
   }
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+form {
+  * {
+    width: 350px;
+  }
+}
+</style>

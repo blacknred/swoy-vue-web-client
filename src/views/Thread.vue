@@ -10,7 +10,11 @@
 
 <script>
 export default {
-  name: "WorkspaceThread"
+  name: "WorkspaceThread",
+  watch: {
+    // call again the method if the route changes
+    // '$route': 'fetchData'
+  }
 };
 </script>
 

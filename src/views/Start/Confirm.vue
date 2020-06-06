@@ -1,60 +1,90 @@
 <template>
-  <div>
-    <el-row type="flex" justify="center" align="middle">
-      <h2>Check your email</h2>
-    </el-row>
-    <el-row type="flex" justify="center" align="middle">
-      We've sent a 6-digit confirmation code to {{ email }}.
-      <br />It will expire shortly, so enter it soon.
-    </el-row>
-    <el-row type="flex" justify="center" align="middle">
-      <el-input autofocus clearable type="number" v-model="code"></el-input>
-    </el-row>
-    <el-row
-      type="flex"
-      align="middle"
-      justify="center"
-    >Confirmation code will expire after {{ secondsLeft }} secounds</el-row>
-  </div>
+  <el-row v-loading="state.isLoading">
+    <el-col :span="6" :offset="9">
+      <el-card shadow="always" :body-style="{ padding: '45px' }">
+        <h2>{{ $t("checkEmail") }}</h2>
+        <br />
+        <h4>{{ $t("confirmDescription", { email }) }}</h4>
+        <br />
+        <br />
+        <el-row>
+          <el-col :span="4" :offset="0" v-for="(_, idx) in state.code" :key="idx">
+            <el-input
+              @input.native="onInput($event, idx)"
+              v-model="state.code[idx]"
+              maxlength="1"
+              :ref="idx"
+              size="1"
+            />
+          </el-col>
+        </el-row>
+        <br />
+        <br />
+        <code>{{ $t("confirmExpire", { seconds: state.timeLeft }) }}</code>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
 import dayjs from "dayjs";
-import { ref, watch } from "@vue/composition-api";
+import { watch, onMounted, reactive, onUnmounted } from "@vue/composition-api";
 
 export default {
   name: "AuthConfirm",
   setup(_, ctx) {
-    const code = ref("");
-    const { $store } = ctx.root;
+    const { $store, $router } = ctx.root;
+    const { email, code, expireAt } = $store.state.start.confirmation;
+    const state = reactive({
+      timeLeft: dayjs(expireAt).diff(dayjs(), "second"),
+      code: ["", "", "", "", "", ""],
+      isLoading: false,
+      timer: null
+    });
 
-    const secondsLeft = ref(
-      dayjs().diff(dayjs($store.state.start.confirmation.expireAt))
+    watch(
+      () => state.code,
+      async val => {
+        if (val.join("") === `${code}`) {
+          state.isLoading = true;
+          await $store.dispatch("getAuthTokens");
+          $router.push("/");
+        }
+      }
     );
 
-    watch(code, newVal => {
-      if (newVal === $store.state.start.confirmation.code) {
-        $store.dispatch("getAuthTokens");
+    watch(
+      () => state.timeLeft,
+      () => {
+        if (dayjs().isAfter(dayjs(expireAt))) {
+          $router.push({ hash: "#check" });
+        }
       }
+    );
+
+    const onInput = (e, r) => {
+      if (e.data && ctx.refs[r + 1]) {
+        ctx.refs[r + 1][0].focus();
+      } else if (!e.data && ctx.refs[r - 1]) {
+        ctx.refs[r - 1][0].focus();
+      }
+    };
+
+    onUnmounted(() => {
+      $store.commit("setConfirmation");
     });
 
-    watch(code, newVal => {
-      if (newVal === $store.state.start.confirmationCode) {
-        $store.dispatch("getAuthTokens");
-      }
+    onMounted(() => {
+      state.timer = setInterval(() => state.timeLeft--, 1000);
     });
 
-//     onMounted(() => {
-//       setInterval(() => {
-// if () {
-  
-// }
-//       }, 1000)
-//     })
-
-    return { email: $store.state.start.confirmation.email, code, secondsLeft };
+    return { email, state, onInput };
   }
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-input {
+  width: 50px;
+}
+</style>

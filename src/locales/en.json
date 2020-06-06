@@ -1,10 +1,27 @@
 {
   "pageTitle": "Page {name}!",
-  "landingAppDescription": "Simple, AI-powered team chat app.",
-  "getStarted": "Get Started",
+  
   "apps": "Apps",
   "about": "About",
   "blog": "Blog",
   "region": "United States(English)",
-  "сhangeRegion": "Change Region"
+  "сhangeRegion": "Change Region",
+
+  "landingAppDescription": "Your simple, AI-powered team chat app.",
+  "getStarted": "Get Started",
+
+  "enterEmail": "Enter your email",
+  "confirm": "Confirm",
+  "recovery": "Recovery",
+  "authDescription": "We use simple authentication model, no login and password, just email which will be used for quick code confirmation.",
+
+  "checkEmail": "Check your email",
+  "invalidEmail": "It doesn't look like email.",
+  "confirmDescription": "We have sent a 6-digit confirmation code to {email}. It will expire shortly, so enter it soon.",
+  "confirmExpire": "Confirmation code expires in a {seconds} seconds ",
+
+  "offline": "Internet connection is not active.",
+  "online": "Restored work online.",
+  "proceed": "Proceed",
+  "cancel": "Cancel"
 }

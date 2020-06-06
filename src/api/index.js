@@ -3,9 +3,7 @@ import _workspaces from "./workspaces.json";
 const LATENCY = 1500;
 const TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImMxNTMwMjY3LTFiNzctNDEyNC05NWNlLTQzOWFjZTcyOTkwOSIsImlhdCI6MTU4OTczMDU5NCwiZXhwIjoxNTg5NzM0MTk0fQ.qQwRR0Oh8w_C-Ie0hUwHrkqa8zqbttosej_gxPyOc9s";
-function delay(ms = 1000) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const delay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
  * Mocking client-server processing
@@ -26,7 +24,7 @@ export const workspaces = {
     console.log(email);
     return {
       token: TOKEN,
-      refreshToken: new Date().getTime()
+      refreshToken: TOKEN
     };
   },
   async getUserWorkspaces() {

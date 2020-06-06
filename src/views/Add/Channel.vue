@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>New workspace channel</p>
-    <router-link to="/create#invites">Go Further</router-link>
+    <router-link to="/add#invites">Go Further</router-link>
   </div>
 </template>
 

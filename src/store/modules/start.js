@@ -1,21 +1,21 @@
 import dayjs from "dayjs";
 import decode from "jwt-decode";
-import router from "@/router";
+
 import * as API from "@/api";
 
-const CONFIRM_CODE_LIVE_MIN = 5;
+const CONFIRM_CODE_LIVE_MIN = 2;
+const confirmationFields = {
+  email: null,
+  code: null,
+  expireAt: null
+};
 
 const state = {
   tokens: {
     token: null,
     refreshToken: null
   },
-  confirmation: {
-    email: null,
-    code: null,
-    expireAt: null
-  },
-  workspaces: []
+  confirmation: { ...confirmationFields }
 };
 
 const getters = {
@@ -24,7 +24,7 @@ const getters = {
       decode(store.tokens.token);
       const { exp } = decode(store.tokens.refreshToken);
       if (Date.now() / 1000 > exp) {
-        return false;
+        return true;
       }
     } catch (err) {
       return false;
@@ -35,75 +35,46 @@ const getters = {
 };
 
 const actions = {
-  // send confirmation code to email
-  confirmEmail: async ({ commit }, email) => {
+  async confirmEmail({ commit }, email) {
     try {
-      const data = await API.workspaces.sendAuthConfirmationCode(email);
+      const { code } = await API.workspaces.sendAuthConfirmationCode(email);
 
-      const { code } = await data.json();
+      const expireAt = dayjs()
+        .add(CONFIRM_CODE_LIVE_MIN, "minute")
+        .valueOf();
 
-      commit("setConfirmationCode", code);
-
-      router.push("/start#confirm");
-
-      // setTimeout(() => {
-      //   commit("setConfirmationCode", null);
-
-      //   router.push("/start#check");
-      // }, CONFIRM_CODE_LIVE_PERIOD);
+      commit("setConfirmation", {
+        expireAt,
+        email,
+        code
+      });
     } catch (e) {
-      console.error(e);
-      commit("setConfirmationCode", null);
+      commit("setNotification", [e?.message, 1]);
     }
   },
-  // send email & check in db & return auth tokens
-  getAuthTokens: async ({ commit }, email) => {
+  async getAuthTokens({ commit }, email) {
     try {
-      const tokens = API.workspaces.getTokens(email);
+      commit("setConfirmation", null);
 
-      commit("setTokens", await tokens.json());
+      const tokens = await API.workspaces.getAuthTokens(email);
 
-      router.push("/start");
+      commit("setTokens", tokens);
     } catch (e) {
-      console.error(e);
+      commit("setNotification", [e?.message, 1]);
     }
   },
-  // clear auth tokens
-  logout: async ({ commit }) => {
+  logout({ commit }) {
     commit("setTokens", {
       refreshToken: null,
       token: null
     });
-
-    router.push("/");
-  },
-  // list all workspaces
-  getAllWorkspaces: async ({ commit }, page = 1) => {
-    try {
-      const data = await API.workspaces.getAllWorkspaces(page);
-
-      commit("setWorkspaces", await data.json());
-    } catch (e) {
-      console.error(e);
-      commit("setWorkspaces", []);
-    }
   }
 };
 
 const mutations = {
   setTokens: (state, tokens) => (state.tokens = tokens),
-  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces),
-  setConfirmationCode: (state, code) => {
-    state.confirmationCode = code;
-
-    if (code) {
-      state.confirmationExpireAt = dayjs()
-        .add(CONFIRM_CODE_LIVE_MIN, "min")
-        .valueOf();
-    } else {
-      state.confirmationExpireAt = null;
-    }
-  }
+  setConfirmation: (state, data) =>
+    (state.confirmation = data || { ...confirmationFields })
 };
 
 export default {
