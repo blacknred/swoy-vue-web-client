@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <component :is="component" />
-  </div>
+  <component :is="component" />
 </template>
 
 <script>
@@ -21,9 +19,7 @@ export default {
     Check
   },
   beforeRouteEnter(to, _, next) {
-    if (store.getters.isLoggedIn) {
-      next("/");
-    } else if (to.hash === "#confirm") {
+    if (to.hash === "#confirm") {
       if (store.state.start.confirmation.code) next();
       else next("/start#check");
     } else if (to.hash === "#check" || to.hash === "#recovery" || !to.hash) {

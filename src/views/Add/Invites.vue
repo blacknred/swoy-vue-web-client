@@ -10,5 +10,3 @@ export default {
   name: "NewWorkspaceInvites"
 };
 </script>
-
-<style scoped lang="scss"></style>

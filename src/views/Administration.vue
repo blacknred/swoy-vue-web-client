@@ -1,5 +1,5 @@
 <template>
-  <div>{{ $t("pageTitle", { name: "Workspace administration" }) }}</div>
+  <div>"Workspace administration"</div>
 </template>
 
 <script>

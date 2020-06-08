@@ -1,19 +1,31 @@
 <template>
   <el-container>
-    <transition name="fade" appear>
-      <el-header height="400px">
-        <img :src="require(`@/assets/images/logo.png`)" alt="title" />
-      </el-header>
-    </transition>
+    <br />
+    <br />
+    <br />
+    <el-header height="400px">
+      <el-row type="flex" justify="center">
+        <transition name="fade" appear>
+          <el-image
+            :src="require('@/assets/images/logo.png')"
+            style="height: 400px"
+            fit="contain"
+            alt="appName"
+          />
+        </transition>
+      </el-row>
+    </el-header>
 
     <el-main>
       <el-row type="flex" justify="center" align="middle">
-        <h1>{{ title }}</h1>
+        <h1 class="__logo">{{ appName }}</h1>
       </el-row>
       <el-row type="flex" justify="center" align="middle">
         <code>{{ $t("landingAppDescription") }}</code>
       </el-row>
     </el-main>
+    <br />
+    <br />
 
     <el-footer height="auto">
       <el-row type="flex" justify="center" align="middle">
@@ -30,26 +42,9 @@
 
 <script>
 export default {
-  name: "Default",
+  name: "DefaultStart",
   setup() {
-    return { title: process.env.VUE_APP_TITLE };
+    return { appName: `${process.env.VUE_APP_TITLE}.` };
   }
 };
 </script>
-
-<style scoped lang="scss">
-section {
-  height: 90%;
-  header {
-    margin: 0 auto;
-    img {
-      height: 100%;
-      object-fit: contain;
-      padding-top: 4rem;
-    }
-  }
-  h1 {
-    font-family: "Dosis";
-  }
-}
-</style>

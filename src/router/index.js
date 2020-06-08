@@ -10,6 +10,8 @@ async function beforeEach(to, _, next) {
 
   if (!to.meta.guest && !store.getters.isLoggedIn) {
     next("/start");
+  } else if (to.meta.guest && store.getters.isLoggedIn) {
+    next("/");
   } else if (store.state.warning) {
     MessageBox.confirm(store.state.warning, "", {
       confirmButtonText: i18n.t("proceed"),
@@ -55,7 +57,7 @@ function scrollBehavior(to, _, savedPosition) {
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch((err) => {
-    if (err.name != "NavigationDuplicated") {
+    if (err.name !== "NavigationDuplicated") {
       throw err;
     }
   });

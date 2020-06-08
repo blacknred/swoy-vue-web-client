@@ -1,27 +1,30 @@
 {
-  "pageTitle": "Page {name}!",
-  
   "apps": "Apps",
   "about": "About",
   "blog": "Blog",
   "region": "United States(English)",
   "сhangeRegion": "Change Region",
+  "offline": "Internet connection is not active.",
+  "online": "Restored work online.",
+  "proceed": "Proceed",
+  "cancel": "Cancel",
 
   "landingAppDescription": "Your simple, AI-powered team chat app.",
   "getStarted": "Get Started",
-
   "enterEmail": "Enter your email",
   "confirm": "Confirm",
   "recovery": "Recovery",
   "authDescription": "We use simple authentication model, no login and password, just email which will be used for quick code confirmation.",
-
   "checkEmail": "Check your email",
   "invalidEmail": "It doesn't look like email.",
   "confirmDescription": "We have sent a 6-digit confirmation code to {email}. It will expire shortly, so enter it soon.",
   "confirmExpire": "Confirmation code expires in a {seconds} seconds ",
 
-  "offline": "Internet connection is not active.",
-  "online": "Restored work online.",
-  "proceed": "Proceed",
-  "cancel": "Cancel"
+  "createTeamTitle": "Try {appName} with your team",
+  "createTeamDescription": "Create a brand-new workspace for you and your team.",
+  "createTeamAction": "+ Create a Workspace",
+  "exploreTeamsTitle": "Is your team already using {appName}?",
+  "exploreTeamsDescription": "Find and join your team` existing workspace or any free community.",
+  "exploreTeamsAction": "Explore Workspaces"
+
 }

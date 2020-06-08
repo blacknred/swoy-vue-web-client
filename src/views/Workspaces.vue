@@ -9,12 +9,19 @@
 </template>
 
 <script>
+import { onMounted } from "@vue/composition-api";
+
 export default {
   name: "WorkspaceThread",
-  watch: {
-    // call again the method if the route changes
-    // '$route': 'fetchData'
+  setup(_, ctx) {
+    onMounted(() => {
+      setTimeout(() => ctx.root.$router.push("/add"), 3000);
+    });
   }
+  // watch: {
+  //   // call again the method if the route changes
+  //   // '$route': 'fetchData'
+  // }
 };
 </script>
 

@@ -1,20 +1,21 @@
 <template>
-  <el-container>
-    <el-header height="100px">
+  <el-container class="container">
+    <el-header height="90px" v-show="showHeader">
       <el-row type="flex" justify="center" align="middle">
-        <router-link to="/start">
+        <router-link to="/">
           <el-link type="primary">
-            <h2>{{ title }}</h2>
+            <h2 class="__logo">{{ appName }}</h2>
           </el-link>
         </router-link>
       </el-row>
+      <br />
     </el-header>
 
     <el-main>
       <router-view />
     </el-main>
 
-    <el-footer height="50px">
+    <el-footer height="80px">
       <Footer />
     </el-footer>
   </el-container>
@@ -28,29 +29,63 @@ export default {
   name: "DefaultLayout",
   components: { Footer },
   setup(_, ctx) {
-    const showHeader = computed(() => !ctx.root.$route.meta.noHeader);
+    const showHeader = computed(
+      () => !/^\/(start)?$/.test(ctx.root.$route.fullPath)
+    );
 
     return {
       showHeader,
-      title: process.env.VUE_APP_TITLE
+      appName: `#${process.env.VUE_APP_TITLE}.`
     };
   }
 };
 </script>
 
-<style scoped lang="scss">
-section {
+<style lang="scss">
+.container {
   height: 100vh;
   header {
-    div {
+    & .el-row {
       height: 100%;
     }
-    h2 {
-      font-family: "Dosis";
+  }
+  form {
+    input,
+    button {
+      width: 25rem;
     }
   }
-  .el-col-24 {
-    width: auto;
+  ul {
+    & .el-card {
+      margin-bottom: 1rem;
+      &__body {
+        padding: 0;
+      }
+    }
+  }
+  .__logo {
+    font-family: "Dosis";
+  }
+  .__center {
+    text-align: center;
+  }
+  .__list {
+    margin: -20px;
+    max-height: 58vh;
+  }
+  .el-input-group__append {
+    border: 0;
+    padding: 0;
+  }
+  .el-card {
+    & section {
+      padding: 3rem 0;
+      height: 350px;
+    }
+    &.__primary {
+      background-color: #409eff;
+      color: white;
+    }
   }
 }
 </style>

@@ -3,7 +3,7 @@ import VueI18n from "vue-i18n";
 
 Vue.use(VueI18n);
 
-/** Internationalisation */
+/** Internationalization */
 
 function loadLocaleMessages() {
   const messages = {};

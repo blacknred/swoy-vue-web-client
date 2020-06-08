@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="slide-fade" mode="out-in" appear>
+    <transition name="slide-down-fade" mode="out-in" appear>
       <component :is="layout">
         <router-view />
       </component>
@@ -11,21 +11,19 @@
 <script>
 import { computed, watch } from "@vue/composition-api";
 import Administration from "@/layouts/Administration.vue";
-import Workspace from "@/layouts/Workspace.vue";
+import Workspaces from "@/layouts/Workspaces.vue";
 import Default from "@/layouts/Default.vue";
 
 export default {
   name: "App",
   components: {
     Default,
-    Workspace,
+    Workspaces,
     Administration
   },
   setup(_, ctx) {
-    const { $route, $store } = ctx.root;
-
-    const layout = computed(() => $route?.meta?.layout || "default");
-    const notification = computed(() => $store.state.notification);
+    const layout = computed(() => ctx.root.$route?.meta?.layout || "default");
+    const notification = computed(() => ctx.root.$store.state.notification);
 
     watch(notification, note => {
       if (note) {

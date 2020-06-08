@@ -24,7 +24,6 @@ const vuexStorage = new VuexPersist({
   reducer: (state) =>
     Object.assign({}, state, {
       add: { newWorkspace: undefined },
-      // start: { confirmation: undefined },
       notification: undefined
     })
 });
@@ -33,7 +32,6 @@ const vuexStorage = new VuexPersist({
 //     warning: state.warning,
 //     add: { workspaces : state.add.workspaces },
 //     settings: state.settings,
-//     start: { tokens: state.start.tokens },
 //     workspaces: state.workspaces,
 // }
 

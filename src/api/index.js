@@ -3,21 +3,28 @@ import _workspaces from "./workspaces.json";
 const LATENCY = 1500;
 const TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6ImMxNTMwMjY3LTFiNzctNDEyNC05NWNlLTQzOWFjZTcyOTkwOSIsImlhdCI6MTU4OTczMDU5NCwiZXhwIjoxNTg5NzM0MTk0fQ.qQwRR0Oh8w_C-Ie0hUwHrkqa8zqbttosej_gxPyOc9s";
-const delay = (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms = 1000) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Mocking client-server processing
  */
 
 export const workspaces = {
-  async getAllWorkspaces() {
+  async getAllWorkspaces({ page, search, isPublic }) {
     await delay(LATENCY * 2);
-    return _workspaces;
+    console.log(page, search, isPublic);
+    return _workspaces
+      .filter(
+        (w) =>
+          (!search || w.name.includes(search)) &&
+          (!isPublic || w.isPublic == isPublic)
+      )
+      .slice(page * 5, 5);
   },
   async sendAuthConfirmationCode(email) {
     await delay(LATENCY);
     console.log(email);
-    return { code: 476786 };
+    return { code: 444444 };
   },
   async getAuthTokens(email) {
     await delay(LATENCY);

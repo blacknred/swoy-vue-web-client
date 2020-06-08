@@ -10,5 +10,3 @@ export default {
   name: "NewWorkspaceName"
 };
 </script>
-
-<style scoped lang="scss"></style>

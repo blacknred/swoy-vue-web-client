@@ -1,26 +1,32 @@
 <template>
-  <el-row v-loading="state.isLoading">
-    <el-col :span="6" :offset="9">
-      <el-card shadow="always" :body-style="{ padding: '45px' }">
-        <h2>{{ $t("checkEmail") }}</h2>
-        <br />
-        <h4>{{ $t("confirmDescription", { email }) }}</h4>
-        <br />
-        <br />
-        <el-row>
-          <el-col :span="4" :offset="0" v-for="(_, idx) in state.code" :key="idx">
-            <el-input
-              @input.native="onInput($event, idx)"
-              v-model="state.code[idx]"
-              maxlength="1"
-              :ref="idx"
-              size="1"
-            />
-          </el-col>
-        </el-row>
-        <br />
-        <br />
-        <code>{{ $t("confirmExpire", { seconds: state.timeLeft }) }}</code>
+  <el-row v-loading="state.isLoading" type="flex" justify="center" align="middle">
+    <el-col :span="6">
+      <el-card shadow="always">
+        <el-container class="__center">
+          <el-header>
+            <h2>{{ $t("checkEmail") }}</h2>
+          </el-header>
+
+          <el-main>
+            <h4>{{ $t("confirmDescription", { email }) }}</h4>
+            <br />
+            <el-row :gutter="15">
+              <el-col :span="4" :offset="0" v-for="(_, idx) in state.code" :key="idx">
+                <el-input
+                  @input.native="onInput($event, idx)"
+                  v-model="state.code[idx]"
+                  maxlength="1"
+                  :ref="idx"
+                  size="1"
+                />
+              </el-col>
+            </el-row>
+          </el-main>
+
+          <el-footer height="auto">
+            <code>{{ $t("confirmExpire", { seconds: state.timeLeft }) }}</code>
+          </el-footer>
+        </el-container>
       </el-card>
     </el-col>
   </el-row>
@@ -83,8 +89,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.el-input {
-  width: 50px;
-}
-</style>

@@ -3,49 +3,70 @@
     "id": 1757593304066,
     "name": "Crime and Punishment",
     "description": "Fyodor Dostoyevsky",
-    "isPublic": "false",
+    "isPublic": false,
     "logo": "https://api.adorable.io/avatars/120/crime@punishment.png"
   },
   {
-    "id": 2657654504066,
+    "id": 2657655504066,
     "name": "The Unloved",
     "description": "John Saul",
-    "isPublic": "true",
+    "isPublic": true,
     "logo": "https://api.adorable.io/avatars/120/the@unloved.png"
   },
   {
-    "id": 3507593304066,
+    "id": 3507883304066,
     "name": "It",
     "description": "Steven King",
-    "isPublic": "true",
+    "isPublic": true,
     "logo": "https://api.adorable.io/avatars/120/steven@king.png"
   },
   {
     "id": 4457593343567,
     "name": "The Sentinel",
     "description": "Jeremy Bishop",
-    "isPublic": "false",
+    "isPublic": false,
     "logo": "https://api.adorable.io/avatars/120/the@sentinel.png"
   },
   {
-    "id": 5351122304066,
+    "id": 5351122344066,
     "name": "Jane Eyre",
     "description": "Charlotte Bron",
-    "isPublic": "false",
+    "isPublic": false,
     "logo": "https://api.adorable.io/avatars/120/jane@eyre.png"
   },
   {
     "id": 6257987654066,
     "name": "The Girl with the Dragon Tattoo",
     "description": "Stieg Larsson",
-    "isPublic": "false",
+    "isPublic": false,
     "logo": "https://api.adorable.io/avatars/120/stieg@larsson.png"
   },
   {
     "id": 7177593366066,
     "name": "Robinson Crusoe",
     "description": "Daniel Defoe",
-    "isPublic": "false",
+    "isPublic": false,
     "logo": "https://api.adorable.io/avatars/120/robinson@crusoe.png"
+  },
+  {
+    "id": 5367892344066,
+    "name": "Jartne werte",
+    "description": "Charlotte Bron",
+    "isPublic": false,
+    "logo": "https://api.adorable.io/avatars/120/jaaewrnewqeryre.png"
+  },
+  {
+    "id": 6257987867566,
+    "name": "Twert Giewtrl wwertith tethe Dragon Tattoo",
+    "description": "Stieg Larsson",
+    "isPublic": true,
+    "logo": "https://api.adorable.io/avatars/120/stiipeg@larsson.png"
+  },
+  {
+    "id": 7173289766066,
+    "name": "Rwobiwertnson Cruwertsoe",
+    "description": "Daniel Defoe",
+    "isPublic": false,
+    "logo": "https://api.adorable.io/avatars/120/robtynson@crusoe.png"
   }
 ]

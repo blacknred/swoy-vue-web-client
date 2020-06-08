@@ -58,6 +58,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.el-row {
+  height: 100%;
+}
 .el-col-24 {
   width: auto;
 }

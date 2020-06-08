@@ -22,6 +22,8 @@ const actions = {
 
     i18n.locale = language;
     dayjs.locale(language);
+    // axios.defaults.headers.common['Accept-Language'] = language
+    document.querySelector("html").setAttribute("lang", language);
   }
 };
 

@@ -7,6 +7,9 @@ export default async function restoration(store) {
   await store.restored;
 
   // locales
-  i18n.locale = store.state.settings.language;
-  dayjs.locale(store.state.settings.language);
+  const { language } = store.state.settings;
+  i18n.locale = language;
+  dayjs.locale(language);
+  // axios.defaults.headers.common['Accept-Language'] = language
+  document.querySelector("html").setAttribute("lang", language);
 }

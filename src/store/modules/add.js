@@ -20,7 +20,7 @@ const actions = {
 
     commit("setNewWorkspaceData", data);
   },
-  clearNewWorkspace: ({ commit }) => {
+  clearNewWorkspaceData: ({ commit }) => {
     commit("setNewWorkspaceData", { ...newWorkspaceFields });
   },
   createWorkspace: async ({ commit, state }) => {
@@ -34,9 +34,16 @@ const actions = {
       commit("setNotification", [e?.message, 1]);
     }
   },
-  async getAllWorkspaces({ commit }, page = 1) {
+  async getAllWorkspaces({ commit, state }, { search, isPublic, refetch }) {
     try {
-      const data = await API.workspaces.getAllWorkspaces(page);
+      if (refetch) commit("clearWorkspaces");
+
+      const page = state.workspaces / 5;
+      const data = await API.workspaces.getAllWorkspaces({
+        isPublic,
+        search,
+        page
+      });
 
       commit("setWorkspaces", data);
     } catch (e) {
@@ -48,7 +55,8 @@ const actions = {
 const mutations = {
   setNewWorkspaceData: (state, data) =>
     (state.newWorkspace = { ...state.newWorkspace, ...data }),
-  setWorkspaces: (state, workspaces) => (state.workspaces = workspaces)
+  clearWorkspaces: (state) => (state.workspaces = []),
+  setWorkspaces: (state, workspaces) => state.workspaces.push(...workspaces)
 };
 
 export default {

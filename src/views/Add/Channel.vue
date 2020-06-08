@@ -10,5 +10,3 @@ export default {
   name: "NewWorkspaceChannel"
 };
 </script>
-
-<style scoped lang="scss"></style>

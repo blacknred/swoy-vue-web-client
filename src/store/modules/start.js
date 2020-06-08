@@ -3,7 +3,7 @@ import decode from "jwt-decode";
 
 import * as API from "@/api";
 
-const CONFIRM_CODE_LIVE_MIN = 2;
+const CONFIRM_CODE_LIVE_MIN = 1.5;
 const confirmationFields = {
   email: null,
   code: null,
