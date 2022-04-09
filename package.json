@@ -21,7 +21,7 @@
     "jwt-decode": "^2.2.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.15",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-content-placeholders": "^0.2.1",
